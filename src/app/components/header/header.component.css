@@ -1,0 +1,18 @@
+nav {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 75px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.brand-name-title {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.status-sign {
+  align-self: flex-start;
+}
