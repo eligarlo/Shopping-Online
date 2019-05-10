@@ -1,3 +1,159 @@
-<p>
-  signup works!
-</p>
+<form [formGroup]="registerForm" (submit)="onRegister()" class="row">
+  <section class="col-12 offset-lg-4 col-lg-5 col-xl-4 register-step-one" [ngClass]="{'d-none': !this.step1}">
+    <div class="card">
+      <article class="card-body">
+        <div class="border-bottom mb-4 mt-1 card-title">
+          <span class="font-weight-bold">Register</span>
+          <span class="float-right text-muted">Step 1</span>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-at"></i></span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="Username"
+              type="text"
+              formControlName="username"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-fingerprint"></i></span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="ID"
+              type="text"
+              formControlName="identityDocument"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-envelope"></i></span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="Confirm Password"
+              type="password"
+              formControlName="passwordConfirm"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+            <i [routerLink]="['/login']"  class="btn btn-outline-success ml-3 col-5 offset-md-1 col-md-3">Sign in</i>
+            <i (click)="changeState()" class="btn btn-primary offset-1 col-5 offset-md-5 col-md-3">Next <i class="ml-1 fas fa-long-arrow-alt-right"></i></i>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="col-12 offset-lg-4 col-lg-5 col-xl-4 register-step-two d-none" [ngClass]="{'d-block': this.step2}">
+    <div class="card">
+      <article class="card-body">
+        <div class="border-bottom mb-4 mt-1 card-title">
+          <span class="font-weight-bold">Register</span>
+          <span class="float-right text-muted">Step 2</span>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-city"></i></span>
+            </div>
+            <input
+              class="form-control"
+              placeholder="City"
+              type="text"
+              formControlName="city"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-road"></i></span>
+            </div>
+            <input class="form-control" placeholder="Street" type="text" formControlName="street" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-signature"></i>
+              </span>
+            </div>
+            <input class="form-control" placeholder="Name" type="text" formControlName="name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-signature"></i>
+              </span>
+            </div>
+            <input class="form-control" placeholder="Last Name" type="text" formControlName="surname" />
+          </div>
+        </div>
+
+        <div class="row">
+          <i (click)="changeState()" class="btn btn-primary ml-3 col-5 offset-md-1 col-md-3"><i class="mr-1 fas fa-long-arrow-alt-left"></i>Back</i>
+          <button type="submit" class="btn btn-outline-success offset-1 col-5 offset-md-5 col-md-3">Submit</button>
+        </div>
+      </article>
+    </div>
+  </section>
+</form>

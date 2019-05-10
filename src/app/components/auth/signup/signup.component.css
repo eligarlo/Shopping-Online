@@ -1,0 +1,23 @@
+.card {
+  min-height: 395px;
+}
+
+div.input-group-prepend>span {
+  width: 40px
+}
+
+section i.btn {
+  cursor: pointer;
+}
+
+section.register-step-one i.btn{
+  margin-top: 2.2rem;
+}
+
+section.register-step-one .form-group{
+  margin-bottom: 0.45rem;
+}
+
+section.register-step-two i.btn, button{
+  margin-top: 2.75rem;
+}
