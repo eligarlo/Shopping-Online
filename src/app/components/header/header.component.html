@@ -6,8 +6,14 @@
       Garcia's Supermarket
     </div>
     <div class="mr-auto status-sign d-none d-lg-block">
-        <img *ngIf="userLogged"  src="../../../assets/sign-open.svg" width="40" height="40" class="d-inline-block align-top" alt="">
-        <img *ngIf="!userLogged"  src="../../../assets/sign-close.svg" width="40" height="40" class="d-inline-block align-top" alt="">
+        <img *ngIf="userIsLogged"  src="../../../assets/sign-open.svg" width="40" height="40" class="d-inline-block align-top" alt="">
+        <img *ngIf="!userIsLogged"  src="../../../assets/sign-close.svg" width="40" height="40" class="d-inline-block align-top" alt="">
       </div>
-    <div class="ml-auto">User info</div>
+
+    <div class="row mr-2 justify-content-end text-right">
+      <div class="col-12 mb-1" *ngIf="userIsLogged">Contact: {{ email }}</div>
+      <div class="col-6 nav-contact-name" *ngIf="userIsLogged">Hello {{ username }}</div>
+      <div class="col-12 nav-contact-name" *ngIf="!userIsLogged">Hello Guest</div>
+      <div class="col-2 px-0 mr-3 btn btn-sm btn-outline-danger nav-logout" *ngIf="userIsLogged" (click)="onLogout()">Logout</div>
+    </div>
 </nav>

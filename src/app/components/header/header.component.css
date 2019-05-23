@@ -16,3 +16,11 @@ nav {
 .status-sign {
   align-self: flex-start;
 }
+
+.nav-contact-name {
+  align-self: flex-end;
+}
+
+.nav-logout {
+  cursor: pointer;
+}
