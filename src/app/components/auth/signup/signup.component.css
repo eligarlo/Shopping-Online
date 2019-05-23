@@ -21,3 +21,19 @@ section.register-step-one .form-group{
 section.register-step-two i.btn, button{
   margin-top: 2.75rem;
 }
+
+.invalid-feedback-input {
+  border-color: #dc3545;
+}
+
+.invalid-feedback-input:focus {
+  border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+.invalid-feedback-message {
+  font-size: 80%;
+  color: #dc3545;
+  padding-left: 40px;
+  margin-top: 5px;
+}

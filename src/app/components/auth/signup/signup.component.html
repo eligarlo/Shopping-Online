@@ -13,12 +13,12 @@
               <span class="input-group-text">
                 <i class="fas fa-at"></i></span>
             </div>
-            <input
-              class="form-control"
-              placeholder="Username"
-              type="text"
-              formControlName="username"
-            />
+            <input class="form-control" placeholder="Username" type="text" formControlName="username"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.username}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1"
+            [ngClass]="{'d-block': inputsValidation.username, 'd-none': !inputsValidation.username}">
+            {{ alertMessage.username }}
           </div>
         </div>
 
@@ -28,12 +28,12 @@
               <span class="input-group-text">
                 <i class="fas fa-fingerprint"></i></span>
             </div>
-            <input
-              class="form-control"
-              placeholder="ID"
-              type="text"
-              formControlName="identityDocument"
-            />
+            <input class="form-control" placeholder="ID" type="text" formControlName="identityDocument"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.identityDocument}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1" [ngClass]="{'d-block': inputsValidation.ID, 'd-none': !inputsValidation.ID}"
+            >
+            {{ alertMessage.ID }}
           </div>
         </div>
 
@@ -43,12 +43,12 @@
               <span class="input-group-text">
                 <i class="far fa-envelope"></i></span>
             </div>
-            <input
-              class="form-control"
-              placeholder="Email"
-              type="email"
-              formControlName="email"
-            />
+            <input class="form-control" placeholder="Email" type="email" formControlName="email"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.email}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1"
+            [ngClass]="{'d-block': inputsValidation.email, 'd-none': !inputsValidation.email}">
+            {{ alertMessage.email }}
           </div>
         </div>
 
@@ -59,12 +59,7 @@
                 <i class="fa fa-lock"></i>
               </span>
             </div>
-            <input
-              class="form-control"
-              placeholder="Password"
-              type="password"
-              formControlName="password"
-            />
+            <input class="form-control" placeholder="Password" type="password" formControlName="password" />
           </div>
         </div>
 
@@ -75,18 +70,19 @@
                 <i class="fa fa-lock"></i>
               </span>
             </div>
-            <input
-              class="form-control"
-              placeholder="Confirm Password"
-              type="password"
-              formControlName="passwordConfirm"
-            />
+            <input class="form-control" placeholder="Confirm Password" type="password" formControlName="passwordConfirm"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.passwordConfirm}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1"
+            [ngClass]="{'d-block': inputsValidation.confirmPass, 'd-none': !inputsValidation.confirmPass}">
+            {{ alertMessage.confirmPass }}
           </div>
         </div>
 
         <div class="row">
-            <i [routerLink]="['/login']"  class="btn btn-outline-success ml-3 col-5 offset-md-1 col-md-3">Sign in</i>
-            <i (click)="changeState()" class="btn btn-primary offset-1 col-5 offset-md-5 col-md-3">Next <i class="ml-1 fas fa-long-arrow-alt-right"></i></i>
+          <i [routerLink]="['/login']" class="btn btn-outline-success ml-3 col-5 offset-md-1 col-md-3">Sign in</i>
+          <i (click)="changeState()" class="btn btn-primary offset-1 col-5 offset-md-5 col-md-3">Next <i
+              class="ml-1 fas fa-long-arrow-alt-right"></i></i>
         </div>
       </article>
     </div>
@@ -108,12 +104,14 @@
               <span class="input-group-text">
                 <i class="fas fa-city"></i></span>
             </div>
-            <input
-              class="form-control"
-              placeholder="City"
-              type="text"
-              formControlName="city"
-            />
+            <select class="form-control" id="selectCity" formControlName="city"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.city}">
+              <option *ngFor="let city of cities" [ngValue]="city">{{ city }}</option>
+            </select>
+          </div>
+          <div class="invalid-feedback-message mb-1" [ngClass]="{'d-block': inputsValidation.city, 'd-none': !inputsValidation.city}"
+            >
+            {{ alertMessage.city }}
           </div>
         </div>
 
@@ -123,7 +121,12 @@
               <span class="input-group-text">
                 <i class="fas fa-road"></i></span>
             </div>
-            <input class="form-control" placeholder="Street" type="text" formControlName="street" />
+            <input class="form-control" placeholder="Street" type="text" formControlName="street"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.street}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1"
+            [ngClass]="{'d-block': inputsValidation.street, 'd-none': !inputsValidation.street}">
+            {{ alertMessage.street }}
           </div>
         </div>
 
@@ -134,7 +137,12 @@
                 <i class="fas fa-signature"></i>
               </span>
             </div>
-            <input class="form-control" placeholder="Name" type="text" formControlName="name" />
+            <input class="form-control" placeholder="Name" type="text" formControlName="name"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.name}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1" [ngClass]="{'d-block': inputsValidation.name, 'd-none': !inputsValidation.name}"
+            >
+            {{ alertMessage.name }}
           </div>
         </div>
 
@@ -145,12 +153,17 @@
                 <i class="fas fa-signature"></i>
               </span>
             </div>
-            <input class="form-control" placeholder="Last Name" type="text" formControlName="surname" />
+            <input class="form-control" placeholder="Last Name" type="text" formControlName="surname"
+            [ngClass]="{'invalid-feedback-input': inputsValidation.surname}"/>
+          </div>
+          <div class="invalid-feedback-message mb-1" [ngClass]="{'d-block': inputsValidation.surname, 'd-none': !inputsValidation.surname}">
+            {{ alertMessage.surname }}
           </div>
         </div>
 
         <div class="row">
-          <i (click)="changeState()" class="btn btn-primary ml-3 col-5 offset-md-1 col-md-3"><i class="mr-1 fas fa-long-arrow-alt-left"></i>Back</i>
+          <i (click)="changeState()" class="btn btn-primary ml-3 col-5 offset-md-1 col-md-3"><i
+              class="mr-1 fas fa-long-arrow-alt-left"></i>Back</i>
           <button type="submit" class="btn btn-outline-success offset-1 col-5 offset-md-5 col-md-3">Submit</button>
         </div>
       </article>
