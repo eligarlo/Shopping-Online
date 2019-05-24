@@ -38,13 +38,12 @@ export class LoginComponent implements OnInit {
 
   onLogin(): AuthData {
     if (this.loginForm.invalid) {
+      // TODO: Send a message to fill up the form.
       return;
     }
     this.authService.login(this.loginForm.value).subscribe((res: any) => {
       this.resetValues();
-      console.log(res);
     }, err => {
-      console.log(err);
       this.resetValues();
       if (err.error.errUsername) {
         this.inputsValidation.username = true;
