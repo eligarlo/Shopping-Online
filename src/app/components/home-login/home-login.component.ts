@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription} from 'rxjs';
-
-import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-login',
@@ -10,13 +7,8 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HomeLoginComponent implements OnInit {
 
-  userIsLogged = false;
-  private authListenerSub: Subscription;
+  constructor() { }
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
-    this.userIsLogged = this.authService.getIsAuth();
-  }
+  ngOnInit() {}
 
 }
