@@ -18,6 +18,7 @@ export class AuthService {
   private token: string;
   private userId: string;
   private username = 'Guest';
+  private email = 'email';
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -38,6 +39,10 @@ export class AuthService {
     return this.username;
   }
 
+  getEmail() {
+    return this.email;
+  }
+
   checkUser(form) {
     return this.http.post(BACKEND_URL + 'signupCheck', form).pipe(map(user => {
       return user;
@@ -50,15 +55,16 @@ export class AuthService {
   }
 
   login(form: FormGroup) {
-    return this.http.post<{token: string, message: string, userId: string, username: string}>(BACKEND_URL + 'login', form)
+    return this.http.post<{token: string, userId: string, name: string, email: string}>(BACKEND_URL + 'login', form)
     .pipe(map(response => {
       this.token = response.token;
       if (this.token) {
         this.isAuthenticated = true;
         this.userId = response.userId;
-        this.username = response.username;
+        this.username = response.name;
+        this.email = response.email;
         this.authStatusListener.next(true);
-        this.saveAuthData(this.token, this.username, this.userId);
+        this.saveAuthData(this.token, this.username, this.userId, this.email);
       }
       return response;
     }));
@@ -83,32 +89,37 @@ export class AuthService {
     this.isAuthenticated = true;
     this.username = authInfo.username;
     this.userId = authInfo.userId;
+    this.email = authInfo.email;
     this.authStatusListener.next(true);
   }
 
-  private saveAuthData(token: string, username: string, userId: string) {
+  private saveAuthData(token: string, username: string, userId: string, email: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
     localStorage.setItem('userId', userId);
+    localStorage.setItem('email', email);
   }
 
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
+    localStorage.removeItem('email');
   }
 
   private getAuthData() {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
     if (!token) {
       return;
     }
     return {
       token,
       username,
-      userId
+      userId,
+      email
     };
   }
 }
