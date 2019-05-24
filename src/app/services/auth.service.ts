@@ -65,6 +65,7 @@ export class AuthService {
         this.email = response.email;
         this.authStatusListener.next(true);
         this.saveAuthData(this.token, this.username, this.userId, this.email);
+        this.router.navigate(['/']);
       }
       return response;
     }));
@@ -77,7 +78,7 @@ export class AuthService {
     this.username = 'Guest';
     this.authStatusListener.next(false);
     this.clearAuthData();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   autoAuthUser() {
