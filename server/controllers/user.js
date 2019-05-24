@@ -123,12 +123,12 @@ exports.userLogin = (req, res, next) => {
     }
     const token = jwt.sign(
       {username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY
-    )
+    );
     return res.status(200).json({
       token: token,
       userId: fetchedUser._id,
-      username: fetchedUser.username,
-      message: 'Welcome'
+      name: fetchedUser.name,
+      email: fetchedUser.email,
     })
   })
   .catch(err => {
