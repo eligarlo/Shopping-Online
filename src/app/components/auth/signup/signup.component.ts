@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
     name: false,
     surname: false
   };
+  isAuthenticated = false;
 
 
   registerForm: FormGroup;
@@ -45,6 +46,11 @@ export class SignupComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.getIsAuth();
+    if (this.isAuthenticated) {
+      this.router.navigate(['/']);
+    }
+
     this.registerForm = new FormGroup({
       username: new FormControl(null, {
         validators: [Validators.required]
