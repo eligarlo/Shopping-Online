@@ -1,3 +1,26 @@
-<p>
-  product works!
-</p>
+<div class="form-row justify-content-center border rounded bg-light text-left">
+  <h3 class="col-12 my-2 py-4 font-weight-bold text-center">Add Product</h3>
+  <div class="col-12 form-group px-4">
+    <label for="productName">Name</label>
+    <input type="text" class="form-control" id="productName" placeholder="Yolo">
+  </div>
+  <div class="col-12 form-group px-4">
+    <label for="productPrice">Price in $</label>
+    <input type="number" class="form-control" id="productPrice" placeholder="39.90">
+  </div>
+  <div class="col-12 form-group px-4">
+    <label for="categoryName">Category</label>
+    <select class="form-control" id="categoryName">
+      <option *ngFor="let category of categories" [value]=category.name>{{ category.name }}</option>
+    </select>
+  </div>
+  <div class="col-12 mb-2 pl-4">Product Picture</div>
+  <div class="col-12 form-group">
+    <label class="custom-file-label" for="productPicture">Choose File</label>
+    <input type="file" class="custom-file-input form-control" id="productPicture">
+  </div>
+  <div class="col-6 col-lg-5 align-self-end my-3">
+    <button class="btn btn-success">Save</button>
+  </div>
+</div>
+<!--[formGroup]="addCategoryForm" (submit)="onAddCategory()"-->
