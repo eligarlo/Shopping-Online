@@ -1,10 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 
-const userRoutes = require('./routes/user');
+const userRoutes = require("./routes/user");
+const categoryRoutes = require("./routes/categories");
+const productRoutes = require("./routes/products");
 
 const PORT = 3000;
 
@@ -20,8 +22,10 @@ mongoose.connect(dbUri, {useCreateIndex: true, useNewUrlParser: true})
 .catch(() => {
   console.log('Connection to the database failed!');
 });
-app.use('/api/user', userRoutes); // Will only use userRoutes if the req is for any of the routes starting on '/api/user'
 
+app.use('/api/user', userRoutes); // Will only use userRoutes if the req is for any of the routes starting on '/api/user'
+app.use('/api/category', categoryRoutes); // Will only use categoryRoutes if the req is for any of the routes starting on '/api/category'
+app.use('api/product', productRoutes); // Will only use productRoutes if the req is for any of the routes starting on '/api/product'
 
 app.listen(PORT, function() {
   console.log(`App listening on port ${PORT}`);

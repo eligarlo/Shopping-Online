@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 
-const userController = require('../controllers/user');
+const userController = require("../controllers/user");
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.post('/signup', userController.createUser);
 // In the frontend will be /api/user/login
 router.post('/login', userController.userLogin);
 
-module.exports = router
+module.exports = router;
