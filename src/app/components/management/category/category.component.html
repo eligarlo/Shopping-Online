@@ -1,9 +1,17 @@
-<div class="form-row justify-content-center">
-  <div class="col-auto">
+<form [formGroup]="addCategoryForm" (submit)="onAddCategory()" class="form-row justify-content-center">
+  <div class="col-8">
     <label class="font-weight-bold" for="addCategory">Add Category</label>
-    <input type="text" class="form-control" id="addCategory" placeholder="Milk & Eggs">
+    <input formControlName="name" type="text" class="form-control" id="addCategory" placeholder="Milk & Eggs">
   </div>
-  <div class="col-auto align-self-end">
+  <div class="col-4 align-self-end">
     <button class="btn btn-success">Save</button>
   </div>
+</form>
+<div class="invalid-feedback-message col-12 text-left"
+     [ngClass]="{'d-block': inputsValidation.addCategory, 'd-none': !inputsValidation.addCategory}">
+  {{ alertMessage.addCategory }}
+</div>
+<div class="valid-feedback-message col-12 text-left"
+     [ngClass]="{'d-block': successValidation.addCategory, 'd-none': !successValidation.addCategory}">
+  {{ successMessage.addCategory }}
 </div>

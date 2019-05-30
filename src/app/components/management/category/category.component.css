@@ -1,0 +1,11 @@
+.invalid-feedback-message {
+  font-size: 80%;
+  color: #dc3545;
+  margin-top: 5px;
+}
+
+.valid-feedback-message {
+  font-size: 90%;
+  color: #0fbe0d;
+  margin-top: 5px;
+}
