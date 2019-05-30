@@ -14,8 +14,22 @@ exports.createCategory = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      // res.status(500).json({
-      //
-      // })
+    })
+};
+
+// Gets all the categories from the db
+exports.getCategories = (req, res, next) => {
+  const categoryQuery = Category.find({});
+
+  categoryQuery.then(categories => {
+    res.status(200).json({
+      message: 'Categories fetched successfully!',
+      categories: categories
+    })
+  })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Fetching categories failed!'
+      })
     })
 };
