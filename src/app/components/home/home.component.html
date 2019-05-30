@@ -1,15 +1,22 @@
 <div class="row mx-auto justify-content-center">
   <div class="card bg-dark text-white col-11 col-lg-4 mx-2 justify-content-center">
     <div class="row no-gutters">
-      <div class="col-md-4 mx-auto">
-        <img src="../../../assets/shopping-cart.svg" class="card-img" alt="...">
+      <div *ngIf="userIsLogged && role !== 1" class="col-md-4 mx-auto">
+        <img src="../../../assets/shopping-cart.svg" class="card-img" alt="start_shopping">
+      </div>
+      <div *ngIf="userIsLogged && role === 1" class="col-md-5 mx-auto">
+        <img src="../../../assets/shop-management.svg" class="card-img img-fluid" alt="management">
       </div>
     </div>
     <div class="row no-gutters">
       <div class="col-md-8 mx-auto">
-        <div class="card-body text-center">
+        <div *ngIf="userIsLogged && role !== 1" class="card-body text-center">
           <h5 class="card-title">What will you buy today?</h5>
-          <div class="btn btn-success">Start Shopping</div>
+          <button class="btn btn-success">Start Shopping</button>
+        </div>
+        <div *ngIf="userIsLogged && role === 1" class="card-body text-center">
+          <h5 class="card-title">Working hard today?</h5>
+          <button (click)="toManagement()" class="btn btn-success">Go to Management</button>
         </div>
       </div>
     </div>
