@@ -16,4 +16,8 @@ export class CategoryService {
   addCategory(form: FormGroup) {
     return this.http.post<{message: string, result: boolean}>(BACKEND_URL + 'addCategory', form);
   }
+
+  getCategories() {
+    return this.http.get<{message: string, categories: any}>(BACKEND_URL + 'getCategories');
+  }
 }
