@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
+  editCategory: boolean;
+  editProduct: boolean;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onEditCategory() {
+    this.editCategory = true;
+    this.editProduct = false;
+  }
+
+  onEditProduct() {
+    this.editProduct = true;
+    this.editCategory = false;
   }
 
 }

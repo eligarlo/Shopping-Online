@@ -1,3 +1,17 @@
-<p>
-  management works!
-</p>
+<section class="container text-center">
+  <h2 class="font-weight-bold my-4">Management Panel</h2>
+  <div class="row text-center justify-content-around bg-light border rounded">
+    <div class="col-6">
+      <button (click)="onEditCategory()" class="btn btn-primary">Category</button>
+    </div>
+    <div class="col-6">
+      <button (click)="onEditProduct()" class="btn btn-primary">Product</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 mx-auto py-5">
+      <app-category *ngIf="editCategory"></app-category>
+      <app-product *ngIf="editProduct"></app-product>
+    </div>
+  </div>
+</section>
