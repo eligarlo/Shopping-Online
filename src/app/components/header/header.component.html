@@ -11,9 +11,9 @@
       </div>
 
     <div class="row mr-2 justify-content-end text-right">
-      <div class="col-12 mb-1" *ngIf="userIsLogged">Contact: {{ email }}</div>
-      <div class="col-6 nav-contact-name" *ngIf="userIsLogged">Hello {{ username }}</div>
-      <div class="col-12 nav-contact-name" *ngIf="!userIsLogged">Hello Guest</div>
-      <div class="col-2 px-0 mr-3 btn btn-sm btn-outline-danger nav-logout" *ngIf="userIsLogged" (click)="onLogout()">Logout</div>
+      <div class="col-12 mb-1 d-none d-lg-block" *ngIf="userIsLogged">Contact: {{ email }}</div>
+      <div class="col-6 nav-contact-name d-none d-lg-block" *ngIf="userIsLogged">Hello {{ username }}</div>
+      <div class="col-12 nav-contact-name d-none d-lg-block" *ngIf="!userIsLogged">Hello Guest</div>
+      <div class="col-12 col-lg-2 px-0 mr-3 btn btn-sm btn-outline-danger nav-logout" *ngIf="userIsLogged" (click)="onLogout()">Logout</div>
     </div>
 </nav>
