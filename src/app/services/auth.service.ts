@@ -19,6 +19,7 @@ export class AuthService {
   private userId: string;
   private username = 'Guest';
   private email = 'email';
+  private role: number;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -43,6 +44,10 @@ export class AuthService {
     return this.email;
   }
 
+  getRole() {
+    return this.role;
+  }
+
   checkUser(form) {
     return this.http.post(BACKEND_URL + 'signupCheck', form).pipe(map(user => {
       return user;
@@ -55,7 +60,7 @@ export class AuthService {
   }
 
   login(form: FormGroup) {
-    return this.http.post<{token: string, userId: string, name: string, email: string}>(BACKEND_URL + 'login', form)
+    return this.http.post<{token: string, userId: string, name: string, email: string, role: number}>(BACKEND_URL + 'login', form)
     .pipe(map(response => {
       this.token = response.token;
       if (this.token) {
@@ -63,8 +68,9 @@ export class AuthService {
         this.userId = response.userId;
         this.username = response.name;
         this.email = response.email;
+        (response.role) ? this.role = response.role : this.role = null;
         this.authStatusListener.next(true);
-        this.saveAuthData(this.token, this.username, this.userId, this.email);
+        this.saveAuthData(this.token, this.username, this.userId, this.email, this.role);
         this.router.navigate(['/']);
       }
       return response;
@@ -76,6 +82,8 @@ export class AuthService {
     this.isAuthenticated = false;
     this.userId = null;
     this.username = 'Guest';
+    this.email = 'email';
+    this.role = null;
     this.authStatusListener.next(false);
     this.clearAuthData();
     this.router.navigate(['/login']);
@@ -91,14 +99,20 @@ export class AuthService {
     this.username = authInfo.username;
     this.userId = authInfo.userId;
     this.email = authInfo.email;
+    if (authInfo.role) {
+      this.role = authInfo.role;
+    }
     this.authStatusListener.next(true);
   }
 
-  private saveAuthData(token: string, username: string, userId: string, email: string) {
+  private saveAuthData(token: string, username: string, userId: string, email: string, role: number) {
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
     localStorage.setItem('userId', userId);
     localStorage.setItem('email', email);
+    if (role !== null) {
+      localStorage.setItem('role', String(role));
+    }
   }
 
   private clearAuthData() {
@@ -106,6 +120,9 @@ export class AuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     localStorage.removeItem('email');
+    if (localStorage.getItem('role')) {
+      localStorage.removeItem('role');
+    }
   }
 
   private getAuthData() {
@@ -113,14 +130,13 @@ export class AuthService {
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
     const email = localStorage.getItem('email');
+    if (localStorage.getItem('role')) {
+      const role = Number(localStorage.getItem('role'));
+      return { token, username, userId, email, role };
+    }
     if (!token) {
       return;
     }
-    return {
-      token,
-      username,
-      userId,
-      email
-    };
+    return { token, username, userId, email };
   }
 }
