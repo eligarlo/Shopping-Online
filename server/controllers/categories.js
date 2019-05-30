@@ -9,7 +9,7 @@ exports.createCategory = (req, res, next) => {
     .then(result => {
       res.status(201).json({
         message: 'Category created!',
-        result: result
+        result: true
       })
     })
     .catch(err => {
