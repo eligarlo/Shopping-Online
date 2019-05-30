@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeLoginComponent } from './components/home-login/home-login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SloganComponent } from './components/partials/slogan/slogan.component';
+import { ManagementComponent } from './components/management/management.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SloganComponent } from './components/partials/slogan/slogan.component';
     HeaderComponent,
     HomeLoginComponent,
     HomeComponent,
-    SloganComponent
+    SloganComponent,
+    ManagementComponent
   ],
   imports: [
     BrowserModule,
