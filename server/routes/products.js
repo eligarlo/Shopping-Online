@@ -11,4 +11,8 @@ const router = express.Router();
 // Saves product in the db
 router.post('/addProduct', checkManagerAuth, uploadFile, productController.createProduct);
 
+// In the frontend will be /api/product/getProducts
+// Gets all the products from the db
+router.get('/getProducts', productController.getProducts);
+
 module.exports = router;

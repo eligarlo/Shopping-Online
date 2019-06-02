@@ -21,3 +21,19 @@ exports.createProduct = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getProducts = (req, res, next) => {
+  const productQuery = Product.find({});
+
+  productQuery.then(products => {
+    res.status(200).json({
+      message: 'Products fetched successfully!',
+      products: products
+    })
+  })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Fetching products failed!'
+      })
+    })
+};
