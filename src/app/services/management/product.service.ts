@@ -21,4 +21,8 @@ export class ProductService {
     productData.append('image', image, name);
     return this.http.post<{message: string, result: string}>(BACKEND_URL + 'addProduct', productData);
   }
+
+  getProducts() {
+    return this.http.get<{message: string, products: any}>(BACKEND_URL + 'getProducts');
+  }
 }
