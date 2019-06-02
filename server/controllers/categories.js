@@ -3,7 +3,8 @@ const Category = require("../models/categories");
 // Saves the category in the db
 exports.createCategory = (req, res, next) => {
   const category = new Category({
-    name: req.body.name
+    name: req.body.name,
+    creator: req.userData.userId
   });
   category.save()
     .then(result => {
