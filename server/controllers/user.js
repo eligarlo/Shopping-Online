@@ -122,7 +122,7 @@ exports.userLogin = (req, res, next) => {
       });
     }
     const token = jwt.sign(
-      {username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY
+      {username: fetchedUser.username, userId: fetchedUser._id, role: fetchedUser.role}, process.env.JWT_KEY
     );
     if (fetchedUser.role === 1) {
       return res.status(200).json({
