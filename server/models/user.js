@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
   street: { type: String, required: true },
   name: { type: String, required: true },
   surname: { type: String, required: true },
+  // If you want to create another admin, you have to change this value to 1 or change the frontend
   role: {type: Number, default: 2 }
 });
 
