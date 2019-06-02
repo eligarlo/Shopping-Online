@@ -43,7 +43,9 @@ export class ProductComponent implements OnInit {
           this.addProductForm.value.category,
           this.addProductForm.value.image)
           .subscribe(res => {
-          console.log(res);
+            console.log(res);
+            this.addProductForm.reset();
+            this.imagePlaceHolder = 'Choose File';
         });
       }
     }
