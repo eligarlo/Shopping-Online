@@ -20,6 +20,7 @@ import { SloganComponent } from './components/partials/slogan/slogan.component';
 import { ManagementComponent } from './components/management/management.component';
 import { CategoryComponent } from './components/management/category/category.component';
 import { ProductComponent } from './components/management/product/product.component';
+import { ShopInfoComponent } from './components/partials/shop-info/shop-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductComponent } from './components/management/product/product.compon
     SloganComponent,
     ManagementComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    ShopInfoComponent
   ],
   imports: [
     BrowserModule,
