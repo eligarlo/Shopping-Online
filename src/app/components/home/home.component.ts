@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/management']);
   }
 
+  toShopping() {
+    this.router.navigate(['/shop']);
+  }
+
   ngOnDestroy() {
     this.authListenerSub.unsubscribe();
   }

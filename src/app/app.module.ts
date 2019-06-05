@@ -21,6 +21,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { CategoryComponent } from './components/management/category/category.component';
 import { ProductComponent } from './components/management/product/product.component';
 import { ShopInfoComponent } from './components/partials/shop-info/shop-info.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ShopInfoComponent } from './components/partials/shop-info/shop-info.com
     ManagementComponent,
     CategoryComponent,
     ProductComponent,
-    ShopInfoComponent
+    ShopInfoComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

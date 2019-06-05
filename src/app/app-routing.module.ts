@@ -10,12 +10,14 @@ import {HomeComponent} from './components/home/home.component';
 import {HomeLoginComponent} from './components/home-login/home-login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import {ManagementComponent} from './components/management/management.component';
+import {ShopComponent} from './components/shop/shop.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: HomeLoginComponent },
   { path: 'register', component: SignupComponent },
-  { path: 'management', component: ManagementComponent, canActivate: [ManagementGuard] }
+  { path: 'management', component: ManagementComponent, canActivate: [ManagementGuard] },
+  { path: 'shop', component: ShopComponent }
 ];
 
 @NgModule({
