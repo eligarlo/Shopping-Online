@@ -26,4 +26,9 @@ export class ProductService {
   getProducts() {
     return this.http.get<{message: string, products: ProductModel[]}>(BACKEND_URL + 'getProducts');
   }
+
+  getProductsByCategory(category: string) {
+    return this.http.get<{message: string, products: ProductModel[]}>(BACKEND_URL + 'getProducts/' + category);
+  }
+
 }
