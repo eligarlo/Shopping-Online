@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {environment} from '../../../environments/environment';
+import {ProductModel} from '../../models/product.model';
 
 const BACKEND_URL = environment.uri + 'product/';
 
@@ -23,6 +24,6 @@ export class ProductService {
   }
 
   getProducts() {
-    return this.http.get<{message: string, products: any}>(BACKEND_URL + 'getProducts');
+    return this.http.get<{message: string, products: ProductModel[]}>(BACKEND_URL + 'getProducts');
   }
 }

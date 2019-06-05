@@ -1,3 +1,12 @@
+.card-first-dynamic {
+  justify-content: center;
+}
+
 .card-slogan {
+  border-top: none;
+  background-color: #F7F7F7;
+}
+
+.card-info {
   border-top: none;
 }
