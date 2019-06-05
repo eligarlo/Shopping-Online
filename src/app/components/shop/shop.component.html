@@ -54,19 +54,51 @@
     </aside>
     <div [ngClass]="{'col-lg-9': !showCart, 'col-lg-8': showCart, 'ml-lg-auto': showCart}"
          class="col-12 shop-products rounded mr-lg-5">
-      <div class="row py-3">
+      <div class="row py-3 justify-content-around header-categories rounded">
         <div *ngFor="let category of categories" class="col-12 col-lg-3 text-center h4 py-2">
-          <span class="category">{{ category.name }}</span>
+          <span (click)="onGetProductByCategory(category.name)" class="category">{{ category.name }}</span>
+        </div>
+        <div class="col-12 col-lg-3 text-center h4 py-2">
+          <span (click)="onGetProducts()" class="category">All Categories</span>
         </div>
       </div>
-      <div class="row">
+      <div class="row pt-3">
         <div *ngFor="let product of products" class="col-6 col-lg-2 pb-4 text-center">
           <div class="row">
             <div class="col-12 pb-2">
-              <img class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
+              <img (click)="onClickProduct($event, product.name)" class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
             </div>
             <div class="col-12 font-weight-bold">{{ product.name }}</div>
             <div class="col-12">${{ product.price }}</div>
+
+            <div *ngIf="productClicked && productClickedName === product.name" class="col-12 popup">
+              <div class="card pt-3">
+                <img [src]="product.imagePath" class="card-img-top img-fluid mx-auto" [alt]="product.name">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8 col-lg-6">
+                      <h5 class="card-title text-white">{{ product.name }}</h5>
+                    </div>
+                    <div class="col-4 col-lg-6">
+                      <h5 class="card-title text-white">${{ product.price }}</h5>
+                    </div>
+                  </div>
+                  <div class="row mt-2 mb-3">
+                    <div class="col-12 col-lg-6 mr-lg-auto">
+                      <input type="number" class="form-control" placeholder="Quantity">
+                    </div>
+                    <div class="col-12 mt-2 mt-lg-0 col-lg-4">
+                      <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-lg-5 mx-auto">
+                      <button (click)="onContinueShopping()" class="btn btn-primary">Continue Shopping</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

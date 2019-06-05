@@ -16,6 +16,9 @@ export class ShopComponent implements OnInit {
   buttonToggleCart = 'Show Cart';
   categories: [];
   products: ProductModel[];
+  noProducts = false;
+  productClicked = false;
+  productClickedName = '';
 
   constructor(private categoryService: CategoryService, private productService: ProductService) { }
 
@@ -33,6 +36,31 @@ export class ShopComponent implements OnInit {
   toggleCart() {
     this.showCart = !this.showCart;
     (this.showCart) ? this.buttonToggleCart = 'Hide Cart' : this.buttonToggleCart = 'Show Cart';
+  }
+
+  onGetProductByCategory(category) {
+    this.productService.getProductsByCategory(category)
+      .subscribe(resProducts => {
+        (resProducts.products.length !== 0) ? this.products = resProducts.products : this.noProducts = true;
+      });
+  }
+
+  onGetProducts() {
+    this.productService.getProducts()
+      .subscribe(resProducts => {
+        this.products = resProducts.products;
+      });
+  }
+
+  onClickProduct(event, productName) {
+    if (event.path[0].alt === productName) {
+      this.productClicked = true;
+      this.productClickedName = productName;
+    }
+  }
+
+  onContinueShopping() {
+    this.productClickedName = '';
   }
 
 }
