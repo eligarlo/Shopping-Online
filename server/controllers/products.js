@@ -22,6 +22,7 @@ exports.createProduct = (req, res, next) => {
     });
 };
 
+// Get all products from the db
 exports.getProducts = (req, res, next) => {
   const productQuery = Product.find({});
 
@@ -34,6 +35,23 @@ exports.getProducts = (req, res, next) => {
     .catch(err => {
       res.status(500).json({
         message: 'Fetching products failed!'
+      })
+    })
+};
+
+// Get all products by category
+exports.getProductByCategory = (req, res, next) => {
+  const productQuery = Product.find({category: req.params.categoryName});
+
+  productQuery.then(products => {
+      res.status(201).json({
+        message: 'Products fetched successfully!',
+        products: products
+      })
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Fetching products failed'
       })
     })
 };

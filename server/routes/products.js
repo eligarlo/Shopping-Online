@@ -15,4 +15,8 @@ router.post('/addProduct', checkManagerAuth, uploadFile, productController.creat
 // Gets all the products from the db
 router.get('/getProducts', productController.getProducts);
 
+// In the frontend will be /api/product/getProducts/:categoryName
+// Gets all the products by category from the db
+router.get('/getProducts/:categoryName', productController.getProductByCategory);
+
 module.exports = router;
