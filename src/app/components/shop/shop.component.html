@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light bg-light">
-  <div class="form-inline mt-2 my-lg-0">
+  <form (submit)="onSearch(searchForm)" #searchForm="ngForm" class="form-inline mt-2 my-lg-0">
     <div class="input-group mr-2">
       <div class="input-group-prepend">
         <span class="input-group-text" id="Search"><i class="fas fa-search"></i></span>
       </div>
-      <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search">
+      <input name="search" ngModel type="text" class="form-control" placeholder="Search" required>
     </div>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </div>
+  </form>
 </nav>
 
 <section class="container-fluid shop-view pt-3">
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div class="row pt-3">
+      <div *ngIf="!noProducts" class="row pt-3 justify-content-around">
         <div *ngFor="let product of products" class="col-6 col-lg-2 pb-4 text-center">
           <div class="row">
 
@@ -106,6 +106,10 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div *ngIf="noProducts" class="row py-5 justify-content-around">
+        <h4 class="text-center font-weight-bold">We are sorry, we could'nt find any products.</h4>
       </div>
     </div>
 

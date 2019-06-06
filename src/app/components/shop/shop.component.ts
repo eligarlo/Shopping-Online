@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { ProductModel } from '../../models/product.model';
 import { CategoryModel } from '../../models/category.model';
@@ -34,12 +35,24 @@ export class ShopComponent implements OnInit {
       });
   }
 
+  onSearch(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    this.productService.getProductByName(form.value.search)
+      .subscribe(resProduct => {
+        (resProduct.product.length !== 0) ? this.products = resProduct.product : this.noProducts = true;
+      });
+  }
+
   toggleCart() {
     this.showCart = !this.showCart;
     (this.showCart) ? this.buttonToggleCart = 'Hide Cart' : this.buttonToggleCart = 'Show Cart';
   }
 
   onGetProductByCategory(category) {
+    this.products.length = 0;
+    this.noProducts = false;
     this.productService.getProductsByCategory(category)
       .subscribe(resProducts => {
         (resProducts.products.length !== 0) ? this.products = resProducts.products : this.noProducts = true;
@@ -47,6 +60,8 @@ export class ShopComponent implements OnInit {
   }
 
   onGetProducts() {
+    this.products.length = 0;
+    this.noProducts = false;
     this.productService.getProducts()
       .subscribe(resProducts => {
         this.products = resProducts.products;
