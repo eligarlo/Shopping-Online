@@ -19,4 +19,8 @@ router.get('/getProducts', productController.getProducts);
 // Gets all the products by category from the db
 router.get('/getProducts/:categoryName', productController.getProductByCategory);
 
+// In the frontend will be /api/product/getProduct/:productName
+// Gets all the products by category from the db
+router.get('/getProduct/:productName', productController.getProductByName);
+
 module.exports = router;

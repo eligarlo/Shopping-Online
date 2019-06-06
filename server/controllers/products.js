@@ -55,3 +55,20 @@ exports.getProductByCategory = (req, res, next) => {
       })
     })
 };
+
+
+exports.getProductByName = (req, res, next) => {
+  const productQuery = Product.find({name: req.params.productName});
+
+  productQuery.then(product => {
+    res.status(201).json({
+      message: 'Product fetched successfully',
+      product: product
+    })
+  })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Fetching product failed'
+      })
+    })
+};
