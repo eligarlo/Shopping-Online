@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 
+import { CategoryModel } from '../../models/category.model';
+
 import {environment} from '../../../environments/environment';
 
 const BACKEND_URL = environment.uri + 'category/';
@@ -18,6 +20,6 @@ export class CategoryService {
   }
 
   getCategories() {
-    return this.http.get<{message: string, categories: any}>(BACKEND_URL + 'getCategories');
+    return this.http.get<{message: string, categories: CategoryModel[]}>(BACKEND_URL + 'getCategories');
   }
 }

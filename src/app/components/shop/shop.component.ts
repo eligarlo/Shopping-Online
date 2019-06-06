@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ProductModel } from '../../models/product.model';
+import { CategoryModel } from '../../models/category.model';
 
 import { CategoryService } from '../../services/management/category.service';
 import { ProductService } from '../../services/management/product.service';
@@ -14,7 +15,7 @@ export class ShopComponent implements OnInit {
 
   showCart = false;
   buttonToggleCart = 'Show Cart';
-  categories: [];
+  categories: CategoryModel[];
   products: ProductModel[];
   noProducts = false;
   productClicked = false;
