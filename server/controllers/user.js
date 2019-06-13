@@ -121,10 +121,11 @@ exports.userLogin = (req, res, next) => {
         message: 'Incorrect password'
       });
     }
-    const token = jwt.sign(
-      {username: fetchedUser.username, userId: fetchedUser._id, role: fetchedUser.role}, process.env.JWT_KEY
-    );
+    // If admin
     if (fetchedUser.role === 1) {
+      const token = jwt.sign(
+        {username: fetchedUser.username, userId: fetchedUser._id, role: fetchedUser.role}, process.env.JWT_KEY
+      );
       return res.status(200).json({
         token: token,
         userId: fetchedUser._id,
@@ -133,6 +134,9 @@ exports.userLogin = (req, res, next) => {
         role: fetchedUser.role
       })
     }
+    const token = jwt.sign(
+      {username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY
+    );
     return res.status(200).json({
       token: token,
       userId: fetchedUser._id,
