@@ -12,7 +12,8 @@
       <div class="col-md-10 mx-auto">
         <div *ngIf="userIsLogged && role !== 1" class="card-body text-center">
           <h5 class="card-title">What will you buy today?</h5>
-          <button (click)="toShopping()" class="btn btn-success mt-3">Start Shopping</button>
+          <button *ngIf="!hasCart" (click)="toShopping()" class="btn btn-success mt-3">Start Shopping</button>
+          <button *ngIf="hasCart" (click)="toShopping()" class="btn btn-success mt-3">Continue Shopping</button>
         </div>
         <div *ngIf="userIsLogged && role === 1" class="card-body text-center">
           <h5 class="card-title">Working hard today?</h5>
