@@ -9,7 +9,6 @@ exports.createCart = (req, res, next) => {
         date: Date.parse(Date()),
         status: 1,
       });
-      console.log(cart);
       cart.save()
         .then(cart => {
           res.status(201).json({
@@ -33,7 +32,6 @@ exports.getCart = (req, res, next) => {
       console.log(err);
     }
     if (dbResponse.length === 0) {
-      console.log(dbResponse);
       res.status(201).json({
         message: 'Welcome to our shop',
       })

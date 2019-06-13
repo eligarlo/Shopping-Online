@@ -51,7 +51,6 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
               this.hasCart = resCart;
               this.userMessage = this.cartService.getUserMessage();
               this.cartDate = this.cartService.getDate();
-              console.log(this.cartDate);
             }
           }
         );

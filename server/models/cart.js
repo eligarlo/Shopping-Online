@@ -6,9 +6,9 @@ const CartSchema = mongoose.Schema({
   status: { type: Number, required: true },
   products: [{
     name: { type: String },
-    id: { type: String },
     quantity: { type: Number },
-    price: { type: Number }
+    price: { type: Number },
+    image: { type: String }
   }]
 });
 

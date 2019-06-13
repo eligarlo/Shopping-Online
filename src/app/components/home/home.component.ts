@@ -38,14 +38,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         .subscribe(resCart => {
           if (!resCart) {
             this.hasCart = false;
-            console.log(this.hasCart);
             this.cartService.createCart(this.userId)
               .subscribe(resNewCart => {
                 console.log(resNewCart);
               });
           } else {
             this.hasCart = true;
-            console.log(this.hasCart);
           }
           }
         );

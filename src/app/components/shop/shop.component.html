@@ -24,12 +24,12 @@
       </div>
       <div *ngIf="showCart">
         <div class="row my-3">
-          <div class="col-12 py-2 border-bottom border-white">
+          <div *ngFor="let product of cart.products" class="col-12 py-2 border-bottom border-white">
             <div class="row">
               <div class="col-8 col-sm-7 col-lg-8 align-self-center">
                 <div class="row">
-                  <div class="col-12">2 Cheese Wedge Holes</div>
-                  <div class="col-12">$14.9</div>
+                  <div class="col-12">{{ product.name }}</div>
+                  <div class="col-12">${{ product.price }}</div>
                 </div>
               </div>
               <div class="col-4"><img class="img-fluid rounded" src="../../assets/home-slogan.jpg" alt=""></div>
@@ -71,40 +71,40 @@
           <div class="row">
 
             <div class="col-12 pb-2">
-              <img (click)="onClickProduct($event, product.name)" class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
+              <img (click)="onClickProduct($event, product.name, product.price)" class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
             </div>
             <div class="col-12 font-weight-bold">{{ product.name }}</div>
             <div class="col-12">${{ product.price }}</div>
 
-            <div *ngIf="productClicked && productClickedName === product.name" class="col-12 popup">
-              <div class="card pt-3">
-                <img [src]="product.imagePath" class="card-img-top img-fluid mx-auto" [alt]="product.name">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8 col-lg-6">
-                      <h5 class="card-title text-white">{{ product.name }}</h5>
-                    </div>
-                    <div class="col-4 col-lg-6">
-                      <h5 class="card-title text-white">${{ product.price }}</h5>
-                    </div>
+          </div>
+          <form (submit)="onAddToCart(amountProducts)" #amountProducts="ngForm" *ngIf="productClicked && productClickedName === product.name" class="col-12 popup">
+            <div class="card pt-3">
+              <img [src]="product.imagePath" class="card-img-top img-fluid mx-auto" [alt]="product.name">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-8 col-lg-6">
+                    <h5 class="card-title text-white">{{ product.name }}</h5>
                   </div>
-                  <div class="row mt-2 mb-3">
-                    <div class="col-12 col-lg-6 mr-lg-auto">
-                      <input type="number" class="form-control" placeholder="Quantity">
-                    </div>
-                    <div class="col-12 mt-2 mt-lg-0 col-lg-4">
-                      <button class="btn btn-success">Add to Cart</button>
-                    </div>
+                  <div class="col-4 col-lg-6">
+                    <h5 class="card-title text-white">${{ product.price }}</h5>
                   </div>
-                  <div class="row">
-                    <div class="col-12 col-lg-5 mx-auto">
-                      <button (click)="onContinueShopping()" class="btn btn-primary">Continue Shopping</button>
-                    </div>
+                </div>
+                <div class="row mt-2 mb-3">
+                  <div class="col-12 col-lg-6 mr-lg-auto">
+                    <input name="quantity" ngModel type="number" class="form-control" placeholder="Quantity">
+                  </div>
+                  <div class="col-12 mt-2 mt-lg-0 col-lg-4">
+                    <button class="btn btn-success">Add to Cart</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-5 mx-auto">
+                    <button (click)="onContinueShopping()" class="btn btn-primary">Continue Shopping</button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 

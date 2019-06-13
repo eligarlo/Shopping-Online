@@ -40,7 +40,7 @@ export class CartService {
           this.userMessage = response.message;
           return false;
         } else {
-          this.cart = response.cart;
+          this.cart = response.cart[0];
           this.date = response.cart[0].date;
           this.userMessage = response.message;
           return true;

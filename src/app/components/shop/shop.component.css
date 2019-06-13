@@ -49,7 +49,7 @@ div.shop-products span.category {
   font-weight: 700;
 }
 
-div.popup {
+form.popup {
   z-index: 99;
   position: fixed;
   top: 50%;
@@ -58,7 +58,7 @@ div.popup {
   width: 35%;
 }
 
-div.popup .card {
+form.popup .card {
   background-color: rgba(41, 41, 41, 0.9);
 }
 
@@ -71,7 +71,7 @@ div.shop-products img:hover {
 }
 
 @media (max-width: 992px) {
-  div.popup {
+  form.popup {
     width: 100%
   }
 }
