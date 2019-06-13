@@ -1,0 +1,17 @@
+const express = require("express");
+
+const checkUserAuth = require("../middleware/check-user-auth");
+
+const cartController = require("../controllers/cart");
+
+const router = express.Router();
+
+// In the frontend will be /api/cart/addCart
+// Saves cart in the db
+router.post('/addCart', checkUserAuth ,cartController.createCart);
+
+// In the frontend will be /api/cart/getCart
+// Get cart from db
+router.get('/getCart/:userId', checkUserAuth, cartController.getCart);
+
+module.exports = router;

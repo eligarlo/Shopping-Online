@@ -11,6 +11,7 @@ const dbUri = 'mongodb+srv://eligarlo:' + process.env.MONGO_ATLAS_PW + '@test-le
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/categories");
 const productRoutes = require("./routes/products");
+const cartRoutes = require("./routes/cart");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -29,5 +30,6 @@ app.use('/productImages', express.static(path.join('./upload'))); // Path for th
 app.use('/api/user', userRoutes); // Will only use userRoutes if the req is for any of the routes starting on '/api/user'
 app.use('/api/category', categoryRoutes); // Will only use categoryRoutes if the req is for any of the routes starting on '/api/category'
 app.use('/api/product', productRoutes); // Will only use productRoutes if the req is for any of the routes starting on '/api/product'
+app.use('/api/cart', cartRoutes); // Will only use cartRoutes if the req is for any of the routes starting on '/api/cart'
 
 module.exports = app;
