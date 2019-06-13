@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import {environment} from '../../../environments/environment';
-import {ProductModel} from '../../models/product.model';
+import { environment } from '../../../environments/environment';
+import { ProductModel } from '../../models/product.model';
 
 const BACKEND_URL = environment.uri + 'product/';
 
