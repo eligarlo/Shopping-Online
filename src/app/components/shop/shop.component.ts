@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 import { ProductModel } from '../../models/product.model';
 import { CategoryModel } from '../../models/category.model';
@@ -35,11 +36,26 @@ export class ShopComponent implements OnInit, OnDestroy {
     price: undefined,
     image: undefined
   };
+  totalPrice = 0;
+  cartId: string;
 
   constructor(private categoryService: CategoryService,
               private productService: ProductService,
               private authService: AuthService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(paramsRes => {
+      if (paramsRes.cartId) {
+        this.cartId = paramsRes.cartId;
+        this.cartService.getCartByCartId(this.cartId).subscribe(res => {
+          this.cart = this.cartService.getCartFromService();
+          for (let i = 0; this.cart.products.length; i++) {
+            this.totalPrice += (this.cart.products[i].price * this.cart.products[i].quantity);
+          }
+        });
+      }
+    });
+  }
 
   ngOnInit() {
     this.userIsLogged = this.authService.getIsAuth();
@@ -56,14 +72,12 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.productService.getProducts()
       .subscribe(resProducts => {
         this.products = resProducts.products;
-        console.log(this.products);
       });
     if (this.userIsLogged) {
       this.cartService.getCart(this.userId)
         .subscribe(resCart => {
           if (resCart) {
             this.cart = this.cartService.getCartFromService();
-            console.log(this.cart);
           }
         });
     }
@@ -102,14 +116,13 @@ export class ShopComponent implements OnInit, OnDestroy {
       });
   }
 
-  onClickProduct(event, productName, productPrice) {
-    console.log(event.path[0]);
+  onClickProduct(event, productName, productPrice, imagePath) {
     if (event.path[0].alt === productName) {
       this.productClicked = true;
       this.productClickedName = productName;
       this.product.name = productName;
       this.product.price = productPrice;
-      this.product.image = event.path[0].currentSrc;
+      this.product.image = imagePath;
     }
   }
 
@@ -119,9 +132,12 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onAddToCart(form: NgForm) {
     this.product.quantity = form.value.quantity;
-    console.log(form.value.quantity);
-    form.reset();
-    this.productClickedName = '';
+    console.log(this.product);
+    this.cartService.addToCart(this.product).subscribe(res => {
+      console.log(res);
+      form.reset();
+      this.productClickedName = '';
+    });
   }
 
   ngOnDestroy() {

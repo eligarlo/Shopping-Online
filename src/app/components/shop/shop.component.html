@@ -24,15 +24,15 @@
       </div>
       <div *ngIf="showCart">
         <div class="row my-3">
-          <div *ngFor="let product of cart.products" class="col-12 py-2 border-bottom border-white">
+          <div *ngFor="let cartProduct of cart.products" class="col-12 py-2 border-bottom border-white">
             <div class="row">
               <div class="col-8 col-sm-7 col-lg-8 align-self-center">
                 <div class="row">
-                  <div class="col-12">{{ product.name }}</div>
-                  <div class="col-12">${{ product.price }}</div>
+                  <div class="col-12">{{ cartProduct.name }}</div>
+                  <div class="col-12">${{ cartProduct.price }}</div>
                 </div>
               </div>
-              <div class="col-4"><img class="img-fluid rounded" src="../../assets/home-slogan.jpg" alt=""></div>
+              <div class="col-4"><img class="img-fluid rounded" [src]="cartProduct.imagePath" [alt]="product.name"></div>
             </div>
           </div>
           <div class="col-12 py-2 border-bottom border-white">
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="row py-3">
-          <div class="col align-self-end"><span class="font-weight-bold">Total:</span> $XX</div>
+          <div class="col align-self-end"><span class="font-weight-bold">Total:</span> ${{ totalPrice }}</div>
           <div class="col ml-auto text-right"><button class="btn btn-success cart-order">Order</button></div>
         </div>
       </div>
@@ -71,7 +71,7 @@
           <div class="row">
 
             <div class="col-12 pb-2">
-              <img (click)="onClickProduct($event, product.name, product.price)" class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
+              <img (click)="onClickProduct($event, product.name, product.price, product.imagePath)" class="img-fluid rounded" [src]="product.imagePath" [alt]="product.name">
             </div>
             <div class="col-12 font-weight-bold">{{ product.name }}</div>
             <div class="col-12">${{ product.price }}</div>
