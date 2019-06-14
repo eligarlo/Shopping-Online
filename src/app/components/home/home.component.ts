@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authListenerSub: Subscription;
   hasCart: boolean;
   cart;
+  cartId: string;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -40,10 +41,11 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.hasCart = false;
             this.cartService.createCart(this.userId)
               .subscribe(resNewCart => {
-                console.log(resNewCart);
+                this.cartId = resNewCart.cart._id;
               });
           } else {
             this.hasCart = true;
+            this.cartId = this.cartService.getCartId();
           }
           }
         );
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   toShopping() {
-    this.router.navigate(['/shop']);
+    this.router.navigate(['/shop/' + this.cartId]);
   }
 
   ngOnDestroy() {
