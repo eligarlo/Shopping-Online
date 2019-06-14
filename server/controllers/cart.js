@@ -25,6 +25,33 @@ exports.createCart = (req, res, next) => {
         })
 };
 
+// Saves products inside the cart
+exports.saveProductToCart = (req, res, next) => {
+  console.log(req.body);
+  Cart.findOneAndUpdate({_id: req.body.cartId},
+    { $push: {
+      products: {
+        name: req.body.name,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        image: req.body.image
+      }
+      }
+    },
+    { new: true },
+    (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Something went wrong'
+      });
+    }
+    res.status(201).json({
+      message: 'Product added successfully!'
+    })
+    })
+
+};
+
 // Get cart from db
 exports.getCart = (req, res, next) => {
   Cart.find({userId: req.params.userId, status: 1}, (err, dbResponse) => {
@@ -44,3 +71,17 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+// Get cart by it's _id from db
+exports.getCartById = (req, res, next) => {
+  Cart.find({_id: req.params.cartId})
+    .then(cart => {
+      res.status(201).json({
+        cart
+      })
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Something went wrong.'
+      })
+    })
+};
