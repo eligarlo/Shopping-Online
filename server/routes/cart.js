@@ -14,6 +14,10 @@ router.post('/addCart', checkUserAuth, cartController.createCart);
 // Saves products inside the cart
 router.post('/addProduct', checkUserAuth, cartController.saveProductToCart);
 
+// In the frontend will be /api/cart/deleteProduct
+// Deletes products from the cart
+router.post('/deleteProduct', checkUserAuth, cartController.deleteProductFromCart);
+
 // In the frontend will be /api/cart/getCart
 // Get cart from db
 router.get('/getCart/:userId', checkUserAuth, cartController.getCart);

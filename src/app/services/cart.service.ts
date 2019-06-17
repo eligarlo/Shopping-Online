@@ -70,4 +70,8 @@ export class CartService {
     return this.http.post(BACKEND_URL + 'addProduct', productData);
   }
 
+  deleteFromCart(productData) {
+    return this.http.post(BACKEND_URL + 'deleteProduct', productData);
+  }
+
 }

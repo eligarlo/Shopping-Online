@@ -47,12 +47,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(paramsRes => {
       if (paramsRes.cartId) {
         this.cartId = paramsRes.cartId;
-        this.cartService.getCartByCartId(this.cartId).subscribe(res => {
-          this.cart = this.cartService.getCartFromService();
-          for (let i = 0; this.cart.products.length; i++) {
-            this.totalPrice += (this.cart.products[i].price * this.cart.products[i].quantity);
-          }
-        });
+        this.updateCart();
       }
     });
   }
@@ -132,11 +127,26 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onAddToCart(form: NgForm) {
     this.product.quantity = form.value.quantity;
-    console.log(this.product);
     this.cartService.addToCart(this.product).subscribe(res => {
-      console.log(res);
+      this.updateCart();
       form.reset();
       this.productClickedName = '';
+    });
+  }
+
+  onDeleteFromCart(productId) {
+    this.cartService.deleteFromCart({cartId: this.cartId, productId}).subscribe(res => {
+      this.updateCart();
+    });
+  }
+
+  private updateCart() {
+    this.cartService.getCartByCartId(this.cartId).subscribe(response => {
+      this.cart = this.cartService.getCartFromService();
+      this.totalPrice = 0;
+      for (let i = 0; i < this.cart.products.length; i++) {
+        this.totalPrice += (this.cart.products[i].price * this.cart.products[i].quantity);
+      }
     });
   }
 

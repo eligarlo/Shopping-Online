@@ -6,7 +6,7 @@ export interface CartModel {
     name: string,
     quantity: number,
     price: number,
-    imagePath: string
+    image: string
   }];
   _id: string;
 }
