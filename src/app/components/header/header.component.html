@@ -1,10 +1,12 @@
 <nav class="px-2 py-1">
-    <div>
-      <img src="../../../assets/logo-eligarlo.svg" width="65" height="65" class="d-inline-block align-top" alt="">
-    </div>
-    <div class="brand-name-title d-none d-lg-block align-self-end mr-3">
+  <a [routerLink]="['/']" class="logo-link d-flex">
+    <span>
+      <img src="../../../assets/logo-eligarlo.svg" width="65" height="65" class="d-inline-block align-top" alt="logo-eligarlo">
+    </span>
+    <span class="brand-name-title d-none d-lg-inline-block align-self-end mr-3">
       arcia's
-    </div>
+    </span>
+  </a>
     <div class="status-sign d-none d-lg-block mr-auto">
         <img *ngIf="userIsLogged"  src="../../../assets/sign-open.svg" width="40" height="40" class="d-inline-block align-top" alt="">
         <img *ngIf="!userIsLogged"  src="../../../assets/sign-close.svg" width="40" height="40" class="d-inline-block align-top" alt="">
