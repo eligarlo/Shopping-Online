@@ -18,6 +18,10 @@ router.post('/addProduct', checkUserAuth, cartController.saveProductToCart);
 // Deletes products from the cart
 router.post('/deleteProduct', checkUserAuth, cartController.deleteProductFromCart);
 
+// In the frontend will be /api/cart/deleteAllProducts
+// Deletes all products from the cart
+router.post('/deleteAllProducts', checkUserAuth, cartController.deleteAllProductsFromCart);
+
 // In the frontend will be /api/cart/getCart
 // Get cart from db
 router.get('/getCart/:userId', checkUserAuth, cartController.getCart);

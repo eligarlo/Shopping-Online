@@ -30,7 +30,7 @@ aside.cart {
   height: 100%;
 }
 
-aside.cart-order {
+aside .cart-order {
   min-width: 90px;
 }
 

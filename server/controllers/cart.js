@@ -71,6 +71,27 @@ exports.deleteProductFromCart = (req, res, next) => {
     })
 };
 
+// Deletes all products from the cart
+exports.deleteAllProductsFromCart = (req, res, next) => {
+  Cart.update({_id: req.body.cartId},
+    {$pull: {
+      products: { $elemMatch: {_id: req.body.deleteAll}}
+      }
+    },
+    {safe: true, multi: true},
+    (err, result) => {
+      if (err) {
+        res.status(500).json({
+          message: "Something went wrong!"
+        });
+      } else {
+        res.status(201).json({
+          message: "All products deleted"
+        });
+      }
+    })
+};
+
 // Get cart from db
 exports.getCart = (req, res, next) => {
   Cart.find({userId: req.params.userId, status: 1}, (err, dbResponse) => {

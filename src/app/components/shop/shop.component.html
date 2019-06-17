@@ -41,10 +41,19 @@
             </div>
           </div>
         </div>
-        <div class="row py-3">
-          <div class="col align-self-end"><span class="font-weight-bold">Total:</span> ${{ totalPrice }}</div>
-          <div class="col ml-auto text-right"><button class="btn btn-success cart-order">Order</button></div>
-        </div>
+        <section *ngIf="cart.products.length > 0">
+          <div class="row py-3">
+            <div class="col align-self-end"><span class="font-weight-bold">Total:</span> ${{ totalPrice }}</div>
+          </div>
+          <div class="row pb-1">
+            <div class="col">
+              <button (click)="onDeleteAllProducts()" class="btn btn-danger btn-sm">Delete All</button>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-success btn-sm ml-auto cart-order">Order</button>
+            </div>
+          </div>
+        </section>
       </div>
     </aside>
 

@@ -74,4 +74,8 @@ export class CartService {
     return this.http.post(BACKEND_URL + 'deleteProduct', productData);
   }
 
+  deleteAllFromCart(productData) {
+    return this.http.post(BACKEND_URL + 'deleteAllProducts', productData);
+  }
+
 }

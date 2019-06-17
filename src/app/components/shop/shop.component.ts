@@ -73,9 +73,11 @@ export class ShopComponent implements OnInit, OnDestroy {
         .subscribe(resCart => {
           if (resCart) {
             this.cart = this.cartService.getCartFromService();
+            console.log(this.cart);
           }
         });
     }
+
   }
 
   onSearch(form: NgForm) {
@@ -136,6 +138,16 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onDeleteFromCart(productId) {
     this.cartService.deleteFromCart({cartId: this.cartId, productId}).subscribe(res => {
+      this.updateCart();
+    });
+  }
+
+  onDeleteAllProducts() {
+    const deleteAll = [];
+    for (let i = 0; i < this.cart.products.length; i++) {
+      deleteAll.push(this.cart.products[i]._id);
+    }
+    this.cartService.deleteAllFromCart({cartId: this.cartId, deleteAll}).subscribe(res => {
       this.updateCart();
     });
   }

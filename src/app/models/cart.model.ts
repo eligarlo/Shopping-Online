@@ -3,6 +3,7 @@ export interface CartModel {
   date: number;
   status: number;
   products: [{
+    _id: string,
     name: string,
     quantity: number,
     price: number,
