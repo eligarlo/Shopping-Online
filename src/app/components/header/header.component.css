@@ -8,6 +8,11 @@ nav {
   border-bottom: 1px solid #E5E5E5;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: #333333;
+}
+
 .brand-name-title {
   font-size: 25px;
   font-weight: 700;
