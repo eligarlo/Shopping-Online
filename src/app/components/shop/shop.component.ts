@@ -73,7 +73,6 @@ export class ShopComponent implements OnInit, OnDestroy {
         .subscribe(resCart => {
           if (resCart) {
             this.cart = this.cartService.getCartFromService();
-            console.log(this.cart);
           }
         });
     }

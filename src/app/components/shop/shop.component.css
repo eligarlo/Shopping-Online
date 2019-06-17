@@ -34,10 +34,6 @@ aside .cart-order {
   min-width: 90px;
 }
 
-aside div.image-cart {
-  align-self: center;
-}
-
 aside i.fa-times-circle:hover {
   color: #dc3545;
   cursor: pointer;
