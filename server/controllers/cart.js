@@ -75,7 +75,7 @@ exports.deleteProductFromCart = (req, res, next) => {
 exports.deleteAllProductsFromCart = (req, res, next) => {
   Cart.update({_id: req.body.cartId},
     {$pull: {
-      products: { $elemMatch: {_id: req.body.deleteAll}}
+      products: { $elemMatch: {_id: req.body.productsId}}
       }
     },
     {safe: true, multi: true},
