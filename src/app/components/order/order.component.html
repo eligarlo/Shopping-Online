@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="row my-3">
+      <div *ngIf="cart" class="row my-3">
         <div *ngFor="let cartProduct of cart.products" class="col-12 py-2 border-bottom border-white">
           <div class="row">
             <div class="col-7 align-self-center">
@@ -39,6 +39,85 @@
           <h4 class="font-weight-bold text-white">Order</h4>
         </div>
       </div>
+      <form [formGroup]="orderForm" (submit)="onOrder()" class="container">
+        <div class="row border-bottom border-white">
+          <div class="col align-self-end pt-4">
+            <h5 class="font-weight-bold text-white">Shipment Details:</h5>
+          </div>
+          <div class="col text-right align-self-center">
+            <button (click)="onGetDefaultShipmentsDetails()" class="btn btn-primary btn-sm">Use my details</button>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-city"></i>
+                  </span>
+                </div>
+                <select class="form-control" id="selectCity" formControlName="city">
+                  <option *ngFor="let city of cities" [ngValue]="city">{{ city }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-road"></i>
+                  </span>
+                </div>
+                <input class="form-control" placeholder="Street" type="text" formControlName="street"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input class="form-control" placeholder="Street" type="date" formControlName="date"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row border-bottom border-white">
+          <div class="col align-self-end pt-4">
+            <h5 class="font-weight-bold text-white">Payment:</h5>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="far fa-credit-card"></i>
+                  </span>
+                </div>
+                <input class="form-control" placeholder="Credit Card Number" type="number" formControlName="creditCard"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3 justify-content-center">
+          <div class="col-4 text-center">
+            <button class="btn btn-success w-100">Order</button>
+          </div>
+        </div>
+
+      </form>
     </div>
 
   </section>

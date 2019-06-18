@@ -19,7 +19,7 @@ section.order-view::after {
   transform-origin: left bottom;
 }
 
-div h4 {
+div h4, h5 {
   margin-bottom: 0;
 }
 
