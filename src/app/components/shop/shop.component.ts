@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductModel } from '../../models/product.model';
 import { CategoryModel } from '../../models/category.model';
@@ -43,7 +43,8 @@ export class ShopComponent implements OnInit, OnDestroy {
               private productService: ProductService,
               private authService: AuthService,
               private cartService: CartService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.params.subscribe(paramsRes => {
       if (paramsRes.cartId) {
         this.cartId = paramsRes.cartId;
@@ -142,13 +143,20 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   onDeleteAllProducts() {
-    const deleteAll = [];
+    const productsId = [];
     for (let i = 0; i < this.cart.products.length; i++) {
-      deleteAll.push(this.cart.products[i]._id);
+      productsId.push(this.cart.products[i]._id);
     }
-    this.cartService.deleteAllFromCart({cartId: this.cartId, deleteAll}).subscribe(res => {
+    this.cartService.deleteAllFromCart({cartId: this.cartId, productsId}).subscribe(res => {
       this.updateCart();
     });
+  }
+
+  onGoToOrder() {
+    if (this.totalPrice === 0) {
+      return alert('Please add products to your cart first');
+    }
+    this.router.navigate(['order/' + this.cartId]);
   }
 
   private updateCart() {
