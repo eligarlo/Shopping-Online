@@ -102,6 +102,7 @@ exports.createUser = (req, res, next) => {
   })
 };
 
+// Fetches the user from the db
 exports.userLogin = (req, res, next) => {
   let fetchedUser;
   User.findOne({username: req.body.username})
