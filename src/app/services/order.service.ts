@@ -13,6 +13,6 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getShipmentDetails(userId: string) {
-    return this.http.get(BACKEND_URL + 'getShipmentDetails/' + userId);
+    return this.http.get<{city: string, street: string}>(BACKEND_URL + 'getShipmentDetails/' + userId);
   }
 }
