@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/categories");
 const productRoutes = require("./routes/products");
 const cartRoutes = require("./routes/cart");
+const orderRoutes = require("./routes/order");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -31,5 +32,6 @@ app.use('/api/user', userRoutes); // Will only use userRoutes if the req is for 
 app.use('/api/category', categoryRoutes); // Will only use categoryRoutes if the req is for any of the routes starting on '/api/category'
 app.use('/api/product', productRoutes); // Will only use productRoutes if the req is for any of the routes starting on '/api/product'
 app.use('/api/cart', cartRoutes); // Will only use cartRoutes if the req is for any of the routes starting on '/api/cart'
+app.use('/api/order', orderRoutes); // Will only use orderRoutes if the req is for any of the routes starting on '/api/order'
 
 module.exports = app;
