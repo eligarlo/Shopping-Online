@@ -1,0 +1,31 @@
+section.order-view {
+  position: relative;
+  background-color: #696969;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+section.order-view::after {
+  content: '';
+  position: absolute;
+  background-color: #333333;
+  padding-bottom: 141.42136%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  transform: rotate(65.5deg);
+  transform-origin: left bottom;
+}
+
+div h4 {
+  margin-bottom: 0;
+}
+
+div.order-card {
+  z-index: 20;
+  background: rgba(0,0,0, 0.5);
+  color: #FFFFFF;
+  height: 100%;
+}
