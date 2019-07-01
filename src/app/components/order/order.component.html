@@ -1,5 +1,19 @@
 <section class="container-fluid order-view pt-3">
-  <section class="row justify-content-around">
+  <!-- Confirmation Order popup -->
+  <div *ngIf="successfulOrder" class="popup-order">
+    <div class="row">
+      <div class="col-12 pt-4">
+        <h3>Your order has been placed</h3>
+      </div>
+      <div class="col-12 pt-2">
+        <p>To download a receipt <span>click here</span></p>
+      </div>
+      <div class="col-12">
+        <button (click)="onBackToHome()" class="btn btn-success btn-lg my-3">Back to Shop</button>
+      </div>
+    </div>
+  </div>
+  <section *ngIf="!successfulOrder" class="row justify-content-around">
 
     <div class="order-card col-12 col-lg-5 rounded mb-3 mb-lg-0">
       <div class="row border-bottom border-white">

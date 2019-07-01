@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { CartModel } from '../../models/cart.model';
 import { ProductModel } from '../../models/product.model';
@@ -24,6 +24,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   userId: string;
   userIsLogged = false;
   private authListenerSub: Subscription;
+  dateErrorMsg: string;
+  dateErrorInput = false;
+  successfulOrder = false;
 
   orderForm: FormGroup;
   cities: string[] = ['City', 'Madrid', 'Barcelona', 'Valencia', 'Seville'];
@@ -73,6 +76,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       })
     });
     this.orderForm.controls.city.setValue(this.defaultCity, { onlySelf: true });
+    this.successfulOrder = false;
   }
 
   onBackToShop() {
@@ -81,14 +85,37 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   onGetDefaultShipmentsDetails() {
     this.orderService.getShipmentDetails(this.userId).subscribe(shipmentRes => {
-      console.log(shipmentRes);
       this.orderForm.controls.city.setValue(shipmentRes.city, { onlySelf: true });
       this.orderForm.controls.street.setValue(shipmentRes.street, { onlySelf: true });
     });
   }
 
   onOrder() {
-    console.log(this.orderForm.value);
+    if (this.orderForm.invalid) {
+      return;
+    }
+    const order = {
+      userId: this.userId,
+      cartId: this.cartId,
+      totalPrice: this.totalPrice,
+      city: this.orderForm.value.city,
+      street: this.orderForm.value.street,
+      deliveryDate: this.orderForm.value.date,
+      creditCard: this.orderForm.value.creditCard,
+    };
+    const checkDate = this.checkDate(this.orderForm.value.date);
+    if (!checkDate) {
+      this.orderService.addOrder(order).subscribe(res => {
+        if (res.status) {
+          this.orderForm.reset();
+          this.successfulOrder = true;
+        }
+      });
+    }
+  }
+
+  onBackToHome() {
+    this.router.navigate(['/']);
   }
 
   private updateCart() {
@@ -99,6 +126,20 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.totalPrice += (this.cart.products[i].price * this.cart.products[i].quantity);
       }
     });
+  }
+
+  private checkDate(orderDate: any): boolean {
+    const date = new Date(orderDate);
+    const now = new Date();
+    date.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
+    if (date < now) {
+      this.dateErrorMsg = 'Please select a date for the future.';
+      return this.dateErrorInput = true;
+    } else {
+      this.dateErrorMsg = '';
+      return this.dateErrorInput = false;
+    }
   }
 
   ngOnDestroy() {

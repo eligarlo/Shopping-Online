@@ -15,4 +15,8 @@ export class OrderService {
   getShipmentDetails(userId: string) {
     return this.http.get<{city: string, street: string}>(BACKEND_URL + 'getShipmentDetails/' + userId);
   }
+
+  addOrder(form) {
+    return this.http.post<{ message: string, status: boolean}>(BACKEND_URL + 'createOrder', form);
+  }
 }

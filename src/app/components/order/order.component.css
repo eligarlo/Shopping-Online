@@ -29,3 +29,37 @@ div.order-card {
   color: #FFFFFF;
   height: 100%;
 }
+
+div.popup-order {
+  z-index: 99;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  min-height: 30vh;
+  text-align: center;
+  background-color: #FFFFFF;
+  border: 1px solid #696969;
+  border-radius: 15px;
+}
+
+div.popup-order h3 {
+  font-weight: 700;
+}
+
+div.popup-order span {
+  cursor: pointer;
+  color: #0000ff;
+}
+
+div.popup-order span:hover {
+  color: #6666FF;
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  div.popup-order {
+    width: 90%
+  }
+}
