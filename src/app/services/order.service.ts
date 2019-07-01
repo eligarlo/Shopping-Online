@@ -19,4 +19,8 @@ export class OrderService {
   addOrder(form) {
     return this.http.post<{ message: string, status: boolean}>(BACKEND_URL + 'createOrder', form);
   }
+
+  getOrders() {
+    return this.http.get<{message: string, orders: any}>(BACKEND_URL + 'getOrders');
+  }
 }

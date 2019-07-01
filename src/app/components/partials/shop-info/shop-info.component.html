@@ -2,7 +2,7 @@
 <div class="card-body">
   <ul class="list-group list-group-flush mt-2">
     <li class="list-group-item">We have <strong>{{ totalProducts }} products</strong> ready for you.</li>
-    <li class="list-group-item">With a total of <strong>XX orders</strong> from our customers.</li>
+    <li class="list-group-item">With a total of <strong>{{ totalOrders }} orders</strong> from our customers.</li>
     <li *ngIf="userIsLogged && role !== 1" class="list-group-item user-cart-info">{{ userMessage }} {{ cartDate }}</li>
   </ul>
 </div>

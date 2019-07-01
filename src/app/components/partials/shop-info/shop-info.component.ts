@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductService } from '../../../services/management/product.service';
 import { AuthService } from '../../../services/auth.service';
 import { CartService } from '../../../services/cart.service';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
   selector: 'app-shop-info',
@@ -14,6 +15,7 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
 
   orders: number;
   totalProducts: number;
+  totalOrders: number;
   userIsLogged = false;
   role: number;
   private authListenerSub: Subscription;
@@ -24,7 +26,8 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService,
               private authService: AuthService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private orderService: OrderService) {
 
   }
 
@@ -34,6 +37,9 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
     this.userId = this.authService.getUserId();
     this.productService.getProducts().subscribe(res => {
       this.totalProducts = res.products.length;
+    });
+    this.orderService.getOrders().subscribe(res => {
+      this.totalOrders = res.orders;
     });
     this.authListenerSub = this.authService.getAuthStatusListener()
       .subscribe(isLogged => {
