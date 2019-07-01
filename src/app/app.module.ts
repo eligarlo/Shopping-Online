@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Interceptors
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ErrorInterceptor } from './interceptors/error-interceptor';
 
 // Components
 import { AppComponent } from './app.component';
@@ -51,6 +52,11 @@ import { OrderComponent } from './components/order/order.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],
