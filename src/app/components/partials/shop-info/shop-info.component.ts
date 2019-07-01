@@ -20,7 +20,7 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
   userId: string;
   hasCart: boolean;
   userMessage: string;
-  cartDate;
+  cartDate: string;
 
   constructor(private productService: ProductService,
               private authService: AuthService,
@@ -45,10 +45,11 @@ export class ShopInfoComponent implements OnInit, OnDestroy {
       this.cartService.getCart(this.userId)
         .subscribe(resCart => {
             if (!resCart) {
-              this.hasCart = resCart;
+              this.hasCart = false;
               this.userMessage = this.cartService.getUserMessage();
+              this.cartDate = this.cartService.getDate();
             } else {
-              this.hasCart = resCart;
+              this.hasCart = true;
               this.userMessage = this.cartService.getUserMessage();
               this.cartDate = this.cartService.getDate();
             }
