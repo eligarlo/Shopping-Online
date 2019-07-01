@@ -16,6 +16,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error.message) {
           errorMessage = error.error.message;
         }
+        if (error.error.message === 'Incorrect password') {
+          return throwError(error);
+        }
         window.alert(errorMessage);
         return throwError(error);
       })
