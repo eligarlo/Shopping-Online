@@ -3,26 +3,24 @@ const Cart = require("../models/cart");
 
 // Saves the cart in the db
 exports.createCart = (req, res, next) => {
-  //   if (dbResponse !== null) {
-      const cart = new Cart({
-        userId: req.body.userId,
-        date: Date.parse(Date()),
-        status: 1,
-      });
-      cart.save()
-        .then(cart => {
-          res.status(201).json({
-            message: 'Cart created successfully!',
-            cart: cart
-
-          })
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json({
-            message: 'Cart couldn\'t be created'
-          })
-        })
+  const cart = new Cart({
+    userId: req.body.userId,
+    date: Date.parse(Date()),
+    status: 1,
+  });
+  cart.save()
+    .then(cart => {
+      res.status(201).json({
+        message: 'Cart created successfully!',
+        cart: cart
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        message: 'Cart couldn\'t be created'
+      })
+    })
 };
 
 // Saves products inside the cart
