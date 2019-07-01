@@ -10,4 +10,8 @@ const router = express.Router();
 // Gets the shipment details of the user from db
 router.get('/getShipmentDetails/:userId', checkUserAuth, orderController.getShipmentDetails);
 
+// In the frontend will be /api/order/createOrder
+// Saves an order in the db
+router.post('/createOrder', checkUserAuth, orderController.createOrder);
+
 module.exports = router;
