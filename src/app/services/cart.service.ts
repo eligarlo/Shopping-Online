@@ -41,17 +41,19 @@ export class CartService {
   }
 
   getCart(userId: string) {
-    return this.http.get<{message: string, cart: any}>(BACKEND_URL + 'getCart/' + userId)
+    return this.http.get<{message: string, cart: any, hasOpenCart: boolean}>(BACKEND_URL + 'getCart/' + userId)
       .pipe(map(response => {
         if (!response.cart) {
           this.userMessage = response.message;
           return false;
         } else {
           this.cart = response.cart[0];
+          // console.log(this.cart);
           this.date = response.cart[0].date;
+          // console.log(this.date);
           this.cartId = response.cart[0]._id;
           this.userMessage = response.message;
-          return true;
+          return response.hasOpenCart;
         }
       }));
   }

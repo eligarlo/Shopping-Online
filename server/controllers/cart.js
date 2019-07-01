@@ -91,20 +91,36 @@ exports.deleteAllProductsFromCart = (req, res, next) => {
 };
 
 // Get cart from db
+/*
+*   Status 1 === User has an open cart
+*   Status 2 === User ordered in the past
+*/
 exports.getCart = (req, res, next) => {
-  Cart.find({userId: req.params.userId, status: 1}, (err, dbResponse) => {
+  Cart.find({userId: req.params.userId, status: 1}, (err, dbResponse1) => {
     if (err) {
       console.log(err);
     }
-    if (dbResponse.length === 0) {
-      res.status(201).json({
-        message: 'Welcome to our shop',
-      })
+    if (dbResponse1.length === 0) {
+      Cart.find({userId: req.params.userId, status: 2}, (errResponse, dbResponse2) => {
+        if (dbResponse2[dbResponse2.length - 1]) {
+          const lastCart = [dbResponse2[dbResponse2.length - 1]];
+          return res.status(201).json({
+            message: 'Your last order was from',
+            cart: lastCart,
+            hasOpenCart: false
+          });
+        } else {
+          return res.status(201).json({
+            message: 'Welcome to our shop',
+          });
+        }
+      });
     } else {
-      res.status(201).json({
-          message: 'You have an open cart from',
-          cart: dbResponse,
-        })
+      return res.status(201).json({
+        message: 'You have an open cart from',
+        cart: dbResponse1,
+        hasOpenCart: true
+      });
     }
   });
 };
