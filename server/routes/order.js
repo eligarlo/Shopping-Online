@@ -14,4 +14,8 @@ router.get('/getShipmentDetails/:userId', checkUserAuth, orderController.getShip
 // Saves an order in the db
 router.post('/createOrder', checkUserAuth, orderController.createOrder);
 
+// In the frontend will be /api/order/getOrders
+// Gets all the orders from the db
+router.get('/getOrders', orderController.getOrders);
+
 module.exports = router;

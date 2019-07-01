@@ -70,6 +70,23 @@ exports.createOrder = (req, res, next) => {
   }
 };
 
+// Get all orders from the db
+exports.getOrders = (req, res, next) => {
+  const orderQueryFind = OrderModel.find({});
+
+  orderQueryFind.then(orders => {
+    res.status(200).json({
+      message: 'Orders fetched successfully!',
+      orders: orders.length
+    })
+  })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Fetching orders failed!'
+      })
+    })
+};
+
 const newOrder = (req) => {
   return new OrderModel({
     userId: req.body.userId,
