@@ -18,4 +18,12 @@ router.post('/createOrder', checkUserAuth, orderController.createOrder);
 // Gets all the orders from the db
 router.get('/getOrders', orderController.getOrders);
 
+// In the frontend will be /api/order/saveReceipt
+// Saves the receipt in the server
+router.get('/saveReceipt/:cartId', checkUserAuth, orderController.saveReceipt);
+
+// In the frontend will be /api/order/downloadReceipt
+// TODO Downloads the receipt from the server
+router.get('/downloadReceipt/:cartId', checkUserAuth, orderController.downloadReceipt);
+
 module.exports = router;

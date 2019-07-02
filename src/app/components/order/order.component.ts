@@ -118,6 +118,16 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
+  // TODO: Possibility to download the invoice.
+  onDownloadInvoice() {
+    // this.orderService.saveInvoice(this.cartId).subscribe(res => {
+    //   console.log(res);
+      // this.orderService.downloadInvoice(this.cartId).subscribe(resDownload => {
+      //   console.log(resDownload);
+      // });
+    // });
+  }
+
   private updateCart() {
     this.cartService.getCartByCartId(this.cartId).subscribe(response => {
       this.cart = this.cartService.getCartFromService();

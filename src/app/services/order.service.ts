@@ -23,4 +23,12 @@ export class OrderService {
   getOrders() {
     return this.http.get<{message: string, orders: any}>(BACKEND_URL + 'getOrders');
   }
+
+  saveInvoice(cartId: string) {
+    return this.http.get(BACKEND_URL + 'saveReceipt/' + cartId);
+  }
+
+  downloadInvoice(cartId: string) {
+    return this.http.get(BACKEND_URL + 'downloadReceipt/' + cartId);
+  }
 }
