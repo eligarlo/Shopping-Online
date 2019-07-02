@@ -26,6 +26,18 @@ Back end:
 
 The server will automatically reload if you change any file.
 
+## Testing the app
+
+Login as admin:
+
+- username: admin
+- password: 1234
+
+Login as user:
+
+- username: test
+- password: 1234
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
